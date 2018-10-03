@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="chevrolet">
+        <item>Escolha o Modelo</item>
+        <item>Audi</item>
+        <item>Chevrolet</item>
+        <item>Fiat</item>
+    </string-array>
+
+    <string-array name="fiat">
+        <item>Escolha o Modelo</item>
+        <item>Audi</item>
+        <item>Chevrolet</item>
+        <item>Fiat</item>
+    </string-array>
+
+</resources>

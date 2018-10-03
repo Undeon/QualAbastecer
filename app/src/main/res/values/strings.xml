@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Qual Abastecer</string>
+    <string name="action_settings">Settings</string>
+    <string name="listaFabricantes">Escolha um fabricante</string>
+    <string name="textoTituloAplicativo">Qual Abastecer</string>
+    <string name="descLogoAplicativo">Logomarca do Aplicativo</string>
+    <string name="dicaEmailLogin">Digite seu E-mail</string>
+    <string name="dicaSenhaLogin">Digite sua senha</string>
+    <string name="textoBotaoLogar">Entrar</string>
+    <string name="textoTextoCadastrar">Criar nova conta</string>
+    <string name="textoTituloCadastroUsuario">Cadastro do Usuário</string>
+    <string name="dicaCadastroNome">Nome Completo</string>
+    <string name="dicaCadastroEmail">E-mail</string>
+    <string name="dicaCadastroSenha">Senha</string>
+    <string name="dicaCadastroConfirmeSenha">Confirme sua Senha</string>
+    <string name="textoTituloCadastroVeiculo">Cadastro do Veículo</string>
+    <string name="dicaCadastroAnoModelo">Ano Modelo</string>
+    <string name="checkboxGasolina">Gasolina</string>
+    <string name="checkboxEtanol">Etanol</string>
+    <string name="checkboxDiesel">Diesel</string>
+    <string name="checkboxGNV">GNV</string>
+    <string name="botaoCadastroSalvar">Cadastrar</string>
+</resources>

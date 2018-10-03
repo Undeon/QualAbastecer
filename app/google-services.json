@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "146590145840",
+    "firebase_url": "https://qual-abastecer.firebaseio.com",
+    "project_id": "qual-abastecer",
+    "storage_bucket": "qual-abastecer.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:146590145840:android:8c996fcca849f186",
+        "android_client_info": {
+          "package_name": "com.danielfonseca.qualabastecer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "146590145840-qojhdobqgsh432jr1vrh4klm9195bp90.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.danielfonseca.qualabastecer",
+            "certificate_hash": "3e1180b2ebea0318f9ec59d4c77dfa314d487b2f"
+          }
+        },
+        {
+          "client_id": "146590145840-qlqkslbfgucu6ob4ouir2s2nqfvut76r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBd41F8pTW9ZmOhiB81VPl06pd3WJFYl6A"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "146590145840-qlqkslbfgucu6ob4ouir2s2nqfvut76r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

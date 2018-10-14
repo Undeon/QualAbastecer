@@ -69,26 +69,20 @@ class LoginActivity : AppCompatActivity() {
             botaoLogar.isEnabled = it
         })
 
-        botaoLogar.setOnClickListener{
-            if(botaoLogar.isEnabled == true){
-                var email = textoLoginEmail.text.toString()
-                var senha = textoLoginSenha.text.toString()
+        disposables.add(form.onValidSubmit().subscribe{
+            var email = textoLoginEmail.text.toString()
+            var senha = textoLoginSenha.text.toString()
 
-                processoLogin.signInWithEmailAndPassword(email, senha).addOnCompleteListener(this) { task ->
-                    if (task.isSuccessful) {
-                        val intent = Intent(this, MainActivity::class.java)
-                        startActivity(intent)
-                    }
-                    else {
-                        var toast = Toast.makeText(this, "E-mail ou senha inválidos.", Toast.LENGTH_LONG).show()
-                    }
+            processoLogin.signInWithEmailAndPassword(email, senha).addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                } else {
+                    var toast = Toast.makeText(this, "E-mail ou senha inválidos.", Toast.LENGTH_LONG).show()
                 }
             }
+        })
 
-            else{
-                var toast = Toast.makeText(this, "Favor verificar as mensagens de erro.", Toast.LENGTH_LONG).show()
-            }
-        }
         textoCriarConta.setOnClickListener{
             val intent = Intent(this, CadastrarUsuario::class.java)
             startActivity(intent)

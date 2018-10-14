@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="validacaoEmailLogin">O campo e-mail não pode ficar vazio.</string>
+</resources>

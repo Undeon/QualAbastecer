@@ -20,6 +20,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions{
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
@@ -31,8 +36,20 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     implementation 'com.android.support:design:28.0.0'
     implementation 'uk.co.markormesher:android-fab:2.4.1'
-    implementation 'com.google.firebase:firebase-core:16.0.3'
-    implementation 'com.google.firebase:firebase-auth:16.0.3'
+
+    // Firebase
+    implementation 'com.google.firebase:firebase-core:16.0.4'
+    implementation 'com.google.firebase:firebase-auth:16.0.4'
+
+    //RxBinding
+    implementation 'com.jakewharton.rxbinding2:rxbinding-kotlin:2.2.0'
+
+    // Youse Forms, Validators, Formatters
+    implementation 'br.com.youse.forms:form-jdk:0.2.0'
+    implementation 'br.com.youse.forms:rx-form-jdk:0.2.0'
+    implementation 'br.com.youse.forms:validators-jdk:0.2.0'
+    implementation 'br.com.youse.forms:formatters-jdk:0.2.0'
+    implementation 'br.com.youse.forms:formatters-android:0.2.0'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'

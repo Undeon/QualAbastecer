@@ -24,12 +24,12 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
+import android.widget.EditText
 import br.com.youse.forms.validators.ValidationMessage
 import br.com.youse.forms.validators.ValidationTypes
 import br.com.youse.forms.validators.Validator
-import br.com.youse.forms.validators.ValidationTypes.Companion.REQUIRED
 
-class EqualsValidator(val message: String, private val password1: String?, private val password2: String?) : Validator<String> {
+class EqualsValidator(val message: String, private val comparador1: EditText) : Validator<String> {
 
     private val validationMessage = ValidationMessage(message = message, validationType = ValidationTypes.REQUIRED)
 
@@ -38,6 +38,7 @@ class EqualsValidator(val message: String, private val password1: String?, priva
     }
 
     override fun isValid(input: String?): Boolean {
-        return password1.equals(password2)
+        val texto1 = comparador1.text.toString()
+        return texto1 == input
     }
 }

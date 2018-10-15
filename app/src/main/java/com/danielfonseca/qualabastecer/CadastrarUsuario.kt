@@ -10,8 +10,11 @@ import br.com.youse.forms.rxform.RxField
 import br.com.youse.forms.rxform.RxForm
 import br.com.youse.forms.validators.MinLengthValidator
 import br.com.youse.forms.validators.RequiredValidator
+import br.com.youse.forms.validators.ValidationMessage
 import br.com.youse.forms.validators.Validator
+import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.database.FirebaseDatabase
 import com.jakewharton.rxbinding2.view.clicks
 import com.jakewharton.rxbinding2.widget.textChanges
@@ -27,21 +30,22 @@ class CadastrarUsuario : AppCompatActivity() {
             RequiredValidator("O campo nome não pode ficar vazio.")
     )
 
-    val emailValidators = listOf<Validator<String>>(
+    val emailValidators = listOf(
             RequiredValidator("O campo e-mail não pode ficar vazio."),
             EmailValidator("O e-mail digitado não é válido")
     )
 
-    val passwordValidators = listOf<Validator<String>>(
+    val passwordValidators = listOf(
             RequiredValidator("O campo senha não pode ficar vazio."),
             MinLengthValidator("A senha precisa ter pelo menos 8 caracteres", 8),
             ComplexityValidator("A senha precisa ter pelo menos um número e um caractere especial")
     )
 
-    /*val passwordConfirmaValidators = listOf<Validator<String>>(
+    val passwordConfirmaValidators by lazy{ listOf(
             RequiredValidator("O campo senha não pode ficar vazio."),
-            EqualsValidator("As senhas digitadas não são iguais. Favor verificar.", textoCadastroSenha.toString(), textoCadastroConfirmaSenha.toString())
-    )*/
+            EqualsValidator("As senhas digitadas não são iguais. Favor verificar.", textoCadastroSenha)
+    )}
+
 
     private val reference = FirebaseDatabase.getInstance().reference
     private val processoCadastro = FirebaseAuth.getInstance()
@@ -50,16 +54,12 @@ class CadastrarUsuario : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cadastrar_usuario)
 
-                var confirmaPassword = textoCadastroConfirmaSenha.text.toString()
-
         val usuarios = reference.child("usuarios")
 
         val nomeChanges = textoCadastroNome.textChanges().map{ it.toString()}
         val emailChanges = textoCadastroEmail.textChanges().map{ it.toString()}
         val passwordChanges = textoCadastroSenha.textChanges().map{ it.toString()}
         val passwordConfirmaChanges = textoCadastroConfirmaSenha.textChanges().map{ it.toString()}
-
-
 
         val submitHappens = botaoCadastroCadastrar.clicks()
 
@@ -75,15 +75,15 @@ class CadastrarUsuario : AppCompatActivity() {
                 input = passwordChanges,
                 validators = passwordValidators)
 
-        /*val passwordConfirmaField = RxField(key = layoutCadastroConfirmaSenha.id,
+        val passwordConfirmaField = RxField(key = layoutCadastroConfirmaSenha.id,
                 input = passwordConfirmaChanges,
-                validators = passwordConfirmaValidators)*/
+                validators = passwordConfirmaValidators)
 
         form = RxForm.Builder<Int>(submitHappens)
                 .addField(nomeField)
                 .addField(emailField)
                 .addField(passwordField)
-                //.addField(passwordConfirmaField)
+                .addField(passwordConfirmaField)
                 .build()
 
 
@@ -99,6 +99,8 @@ class CadastrarUsuario : AppCompatActivity() {
 
         disposables.add(form.onValidSubmit().subscribe{
 
+            botaoCadastroCadastrar.isEnabled = false
+
             var nome = textoCadastroNome.text.toString()
             var email = textoCadastroEmail.text.toString()
             var password = textoCadastroSenha.text.toString()
@@ -106,7 +108,6 @@ class CadastrarUsuario : AppCompatActivity() {
             val usuario = Usuario()
             usuario.nome = nome
             usuario.email = email
-            usuario.password = password
 
             processoCadastro.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
 
@@ -115,15 +116,19 @@ class CadastrarUsuario : AppCompatActivity() {
                         var toast = Toast.makeText(this, "Cadastro efetuado com sucesso.", Toast.LENGTH_LONG).show()
                         val intent = Intent(this, MainActivity::class.java)
                         startActivity(intent)
+                        finish()
                     }
                     else {
-                        var toast = Toast.makeText(this, "Erro ao efetuar o cadastro.", Toast.LENGTH_LONG).show()
+                        botaoCadastroCadastrar.isEnabled = true
+                        if(task.exception is FirebaseAuthException){
+                            val errorCode = (task.exception as FirebaseAuthException).errorCode
+                            if(errorCode == "ERROR_EMAIL_ALREADY_IN_USE") {
+                                var toast = Toast.makeText(this, "E-mail já cadastrado", Toast.LENGTH_LONG).show()
+                            }
+                        }
                     }
             }
         })
-
-
-
 
     }
 }

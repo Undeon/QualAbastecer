@@ -24,12 +24,12 @@ class LoginActivity : AppCompatActivity() {
 
     private val processoLogin = FirebaseAuth.getInstance()
 
-    val emailValidators = listOf<Validator<String>>(
+    val emailValidators = listOf(
             RequiredValidator("O campo e-mail não pode ficar vazio."),
             EmailValidator("O e-mail digitado não é válido")
     )
 
-    val passwordValidators = listOf<Validator<String>>(
+    val passwordValidators = listOf(
             RequiredValidator("O campo senha não pode ficar vazio."),
             MinLengthValidator("A senha precisa ter pelo menos 8 caracteres", 8)
     )
@@ -37,7 +37,6 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
 
         val emailChanges = textoLoginEmail.textChanges().map{ it.toString()}
         val passwordChanges = textoLoginSenha.textChanges().map{ it.toString()}

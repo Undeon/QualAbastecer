@@ -50,10 +50,7 @@ class CadastrarUsuario : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cadastrar_usuario)
 
-        var nome = textoCadastroNome.text.toString()
-        var email = textoCadastroEmail.text.toString()
-        var password = textoCadastroSenha.text.toString()
-        var confirmaPassword = textoCadastroConfirmaSenha.text.toString()
+                var confirmaPassword = textoCadastroConfirmaSenha.text.toString()
 
         val usuarios = reference.child("usuarios")
 
@@ -62,10 +59,7 @@ class CadastrarUsuario : AppCompatActivity() {
         val passwordChanges = textoCadastroSenha.textChanges().map{ it.toString()}
         val passwordConfirmaChanges = textoCadastroConfirmaSenha.textChanges().map{ it.toString()}
 
-        val usuario = Usuario()
-        usuario.nome = nome
-        usuario.email = email
-        usuario.password = password
+
 
         val submitHappens = botaoCadastroCadastrar.clicks()
 
@@ -105,7 +99,17 @@ class CadastrarUsuario : AppCompatActivity() {
 
         disposables.add(form.onValidSubmit().subscribe{
 
+            var nome = textoCadastroNome.text.toString()
+            var email = textoCadastroEmail.text.toString()
+            var password = textoCadastroSenha.text.toString()
+
+            val usuario = Usuario()
+            usuario.nome = nome
+            usuario.email = email
+            usuario.password = password
+
             processoCadastro.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
+
                     if (task.isSuccessful) {
                         usuarios.push().setValue(usuario)
                         var toast = Toast.makeText(this, "Cadastro efetuado com sucesso.", Toast.LENGTH_LONG).show()

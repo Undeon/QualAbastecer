@@ -12,7 +12,6 @@ import br.com.youse.forms.validators.MinLengthValidator
 import br.com.youse.forms.validators.RequiredValidator
 import br.com.youse.forms.validators.Validator
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.jakewharton.rxbinding2.view.clicks
 import com.jakewharton.rxbinding2.widget.textChanges
 import io.reactivex.disposables.CompositeDisposable
@@ -71,9 +70,9 @@ class LoginActivity : AppCompatActivity() {
 
         disposables.add(form.onValidSubmit().subscribe{
             var email = textoLoginEmail.text.toString()
-            var senha = textoLoginSenha.text.toString()
+            var password = textoLoginSenha.text.toString()
 
-            processoLogin.signInWithEmailAndPassword(email, senha).addOnCompleteListener(this) { task ->
+            processoLogin.signInWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)

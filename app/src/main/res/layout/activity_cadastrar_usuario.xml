@@ -67,7 +67,7 @@
             >
 
             <EditText
-                android:id="@+id/textoLoginEmail"
+                android:id="@+id/textoCadastroEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autofillHints=""
@@ -102,7 +102,7 @@
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/layoutLoginSenha"
+            android:id="@+id/layoutCadastroConfirmaSenha"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -141,7 +141,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layoutLoginSenha"
+            app:layout_constraintTop_toBottomOf="@+id/layoutCadastroConfirmaSenha"
             app:layout_constraintVertical_bias="0.954"
             />
 

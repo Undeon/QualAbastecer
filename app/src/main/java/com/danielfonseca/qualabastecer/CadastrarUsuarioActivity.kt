@@ -10,9 +10,11 @@ import br.com.youse.forms.rxform.RxField
 import br.com.youse.forms.rxform.RxForm
 import br.com.youse.forms.validators.MinLengthValidator
 import br.com.youse.forms.validators.RequiredValidator
-import br.com.youse.forms.validators.ValidationMessage
 import br.com.youse.forms.validators.Validator
-import com.google.firebase.FirebaseException
+import com.danielfonseca.qualabastecer.Validators.ComplexityValidator
+import com.danielfonseca.qualabastecer.Validators.EmailValidator
+import com.danielfonseca.qualabastecer.Validators.EqualsValidator
+import com.danielfonseca.qualabastecer.Veiculos.CadastrarVeiculosActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.database.FirebaseDatabase
@@ -21,7 +23,7 @@ import com.jakewharton.rxbinding2.widget.textChanges
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_cadastrar_usuario.*
 
-class CadastrarUsuario : AppCompatActivity() {
+class CadastrarUsuarioActivity : AppCompatActivity() {
 
     lateinit var form: IRxForm<Int>
     val disposables = CompositeDisposable()
@@ -110,25 +112,23 @@ class CadastrarUsuario : AppCompatActivity() {
             usuario.email = email
 
             processoCadastro.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
-
-                    if (task.isSuccessful) {
-                        usuarios.push().setValue(usuario)
-                        var toast = Toast.makeText(this, "Cadastro efetuado com sucesso.", Toast.LENGTH_LONG).show()
-                        val intent = Intent(this, MainActivity::class.java)
-                        startActivity(intent)
-                        finish()
-                    }
-                    else {
-                        botaoCadastroCadastrar.isEnabled = true
-                        if(task.exception is FirebaseAuthException){
-                            val errorCode = (task.exception as FirebaseAuthException).errorCode
-                            if(errorCode == "ERROR_EMAIL_ALREADY_IN_USE") {
-                                var toast = Toast.makeText(this, "E-mail já cadastrado", Toast.LENGTH_LONG).show()
-                            }
+                if (task.isSuccessful) {
+                    usuarios.push().setValue(usuario)
+                    var toast = Toast.makeText(this, "Cadastro efetuado com sucesso.", Toast.LENGTH_LONG).show()
+                    val intent = Intent(this, CadastrarVeiculosActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+                else {
+                    botaoCadastroCadastrar.isEnabled = true
+                    if(task.exception is FirebaseAuthException){
+                        val errorCode = (task.exception as FirebaseAuthException).errorCode
+                        if(errorCode == "ERROR_EMAIL_ALREADY_IN_USE") {
+                            var toast = Toast.makeText(this, "E-mail já cadastrado", Toast.LENGTH_LONG).show()
                         }
                     }
+                }
             }
         })
-
     }
 }

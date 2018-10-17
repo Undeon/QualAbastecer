@@ -1,4 +1,4 @@
-package com.danielfonseca.qualabastecer
+package com.danielfonseca.qualabastecer.Validators
 
 /**
 MIT License
@@ -24,12 +24,12 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
-import android.util.Patterns
+import android.widget.EditText
 import br.com.youse.forms.validators.ValidationMessage
 import br.com.youse.forms.validators.ValidationTypes
 import br.com.youse.forms.validators.Validator
 
-class EmailValidator    (val message: String) : Validator<String> {
+class EqualsValidator(val message: String, private val comparador1: EditText) : Validator<String> {
 
     private val validationMessage = ValidationMessage(message = message, validationType = ValidationTypes.REQUIRED)
 
@@ -38,6 +38,7 @@ class EmailValidator    (val message: String) : Validator<String> {
     }
 
     override fun isValid(input: String?): Boolean {
-        return Patterns.EMAIL_ADDRESS.matcher(input).matches()
+        val texto1 = comparador1.text.toString()
+        return texto1 == input
     }
 }

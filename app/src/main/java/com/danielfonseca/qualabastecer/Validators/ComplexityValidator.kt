@@ -1,4 +1,4 @@
-package com.danielfonseca.qualabastecer
+package com.danielfonseca.qualabastecer.Validators
 
 /**
 MIT License
@@ -24,21 +24,37 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
-import android.widget.EditText
 import br.com.youse.forms.validators.ValidationMessage
 import br.com.youse.forms.validators.ValidationTypes
 import br.com.youse.forms.validators.Validator
 
-class EqualsValidator(val message: String, private val comparador1: EditText) : Validator<String> {
+class ComplexityValidator(val message: String) : Validator<String> {
 
-    private val validationMessage = ValidationMessage(message = message, validationType = ValidationTypes.REQUIRED)
+    private val validationMessage = ValidationMessage(message = message, validationType = ValidationTypes.MIN_LENGTH)
 
     override fun validationMessage(): ValidationMessage {
         return validationMessage
     }
 
-    override fun isValid(input: String?): Boolean {
-        val texto1 = comparador1.text.toString()
-        return texto1 == input
+    override fun isValid(password: String?): Boolean {
+        password?.let {
+            val passwordPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{4,}$"
+            val passwordMatcher = Regex(passwordPattern)
+
+            return passwordMatcher.find(password) != null
+        } ?: return false
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

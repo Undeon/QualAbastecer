@@ -10,7 +10,8 @@ import br.com.youse.forms.rxform.RxField
 import br.com.youse.forms.rxform.RxForm
 import br.com.youse.forms.validators.MinLengthValidator
 import br.com.youse.forms.validators.RequiredValidator
-import br.com.youse.forms.validators.Validator
+import com.danielfonseca.qualabastecer.Validators.EmailValidator
+import com.danielfonseca.qualabastecer.Veiculos.CadastrarVeiculosActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.jakewharton.rxbinding2.view.clicks
 import com.jakewharton.rxbinding2.widget.textChanges
@@ -73,19 +74,23 @@ class LoginActivity : AppCompatActivity() {
 
             processoLogin.signInWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
+                        val intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
                 } else {
-                    var toast = Toast.makeText(this, "E-mail ou senha inválidos.", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "E-mail ou senha inválidos.", Toast.LENGTH_LONG).show()
                 }
             }
         })
 
         textoCriarConta.setOnClickListener{
-            val intent = Intent(this, CadastrarUsuario::class.java)
+            val intent = Intent(this, CadastrarUsuarioActivity::class.java)
             startActivity(intent)
         }
 
+        button2.setOnClickListener {
+            val intent = Intent(this, CadastrarVeiculosActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onDestroy() {

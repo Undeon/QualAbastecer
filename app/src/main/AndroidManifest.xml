@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.danielfonseca.qualabastecer">
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -21,7 +22,7 @@
         </activity>
         <activity android:name=".Veiculos.GerenciarVeiculosActivity" />
         <activity android:name=".Veiculos.CadastrarVeiculosActivity" />
-        <activity android:name=".CadastrarUsuarioActivity" />
+        <activity android:name=".Usuarios.CadastrarUsuarioActivity" />
         <activity android:name=".MainActivity"></activity>
     </application>
 

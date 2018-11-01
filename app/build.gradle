@@ -38,9 +38,9 @@ dependencies {
     implementation 'uk.co.markormesher:android-fab:2.4.1'
 
     // Firebase
+    implementation 'com.google.firebase:firebase-firestore:17.1.2'
     implementation 'com.google.firebase:firebase-core:16.0.4'
-    implementation 'com.google.firebase:firebase-database:16.0.3'
-    implementation 'com.google.firebase:firebase-auth:16.0.4'
+    implementation 'com.google.firebase:firebase-auth:16.0.5'
 
     //RxBinding
     implementation 'com.jakewharton.rxbinding2:rxbinding-kotlin:2.2.0'
@@ -51,6 +51,10 @@ dependencies {
     implementation 'br.com.youse.forms:validators-jdk:0.2.0'
     implementation 'br.com.youse.forms:formatters-jdk:0.2.0'
     implementation 'br.com.youse.forms:formatters-android:0.2.0'
+
+    // Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
 
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'

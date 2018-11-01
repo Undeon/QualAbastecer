@@ -1,4 +1,4 @@
-package com.danielfonseca.qualabastecer
+package com.danielfonseca.qualabastecer.Usuarios
 
 
 class Usuario {

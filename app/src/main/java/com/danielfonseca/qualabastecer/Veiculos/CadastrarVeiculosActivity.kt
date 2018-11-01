@@ -2,6 +2,8 @@ package com.danielfonseca.qualabastecer.Veiculos
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.danielfonseca.qualabastecer.API.CarrosService
 import com.danielfonseca.qualabastecer.R
@@ -39,9 +41,20 @@ class CadastrarVeiculosActivity : AppCompatActivity() {
                     marcas.toString()
                     listaMarca = marcas!!.toMutableList()
 
-                    val aa = ArrayAdapter(this, android.R.layout.simple_spinner_item, listaMarca)
+                    val aa = ArrayAdapter(this@CadastrarVeiculosActivity, android.R.layout.simple_spinner_item, listaMarca)
                     aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                     dropDownMarcas!!.setAdapter(aa)
+
+                    dropDownMarcas?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+                        override fun onNothingSelected(parent: AdapterView<*>?) {
+                            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                        }
+
+                        override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                            val idRetornado = listaMarca[position].id
+                            println(idRetornado)
+                        }
+                    }
                 }
             }
 
@@ -49,8 +62,5 @@ class CadastrarVeiculosActivity : AppCompatActivity() {
                 call.toString()
             }
         })
-
-
-
     }
 }

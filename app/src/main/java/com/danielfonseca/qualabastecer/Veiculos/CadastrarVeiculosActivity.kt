@@ -7,7 +7,7 @@ import com.danielfonseca.qualabastecer.API.CarrosService
 import com.danielfonseca.qualabastecer.R
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import com.danielfonseca.qualabastecer.Model.Marcas
+import com.danielfonseca.qualabastecer.Model.Marca
 import kotlinx.android.synthetic.main.activity_cadastrar_veiculos.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -18,7 +18,7 @@ class CadastrarVeiculosActivity : AppCompatActivity() {
 
     var marcaEscolhida = "Escolha o Fabricante"
 
-    var listaMarcas: List<Marcas>? = null
+    var listaMarca = mutableListOf<Marca>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,25 +30,27 @@ class CadastrarVeiculosActivity : AppCompatActivity() {
                 .build()
 
         val carroService = retrofit.create(CarrosService::class.java)
-        val call = carroService.recuperarMarcas()
+        val call = carroService.recuperarMarca()
 
-        call.enqueue(object: Callback<List<Marcas>>{
-            override fun onResponse(call: Call<List<Marcas>>?, response: Response<List<Marcas>>?) {
+        call.enqueue(object: Callback<List<Marca>>{
+            override fun onResponse(call: Call<List<Marca>>?, response: Response<List<Marca>>?) {
                 if(response!!.isSuccessful()){
                     val marcas = response.body()
                     marcas.toString()
-                    listaMarcas = marcas!!
+                    listaMarca = marcas!!.toMutableList()
+
+                    val aa = ArrayAdapter(this, android.R.layout.simple_spinner_item, listaMarca)
+                    aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                    dropDownMarcas!!.setAdapter(aa)
                 }
             }
 
-            override fun onFailure(call: Call<List<Marcas>>?,t: Throwable?) {
+            override fun onFailure(call: Call<List<Marca>>?, t: Throwable?) {
                 call.toString()
             }
         })
 
-        val aa = ArrayAdapter(this, android.R.layout.simple_spinner_item, listaMarcas)
-        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        dropDownMarcas!!.setAdapter(aa)
+
 
     }
 }

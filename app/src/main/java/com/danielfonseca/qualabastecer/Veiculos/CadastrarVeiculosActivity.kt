@@ -67,21 +67,22 @@ class CadastrarVeiculosActivity : AppCompatActivity() {
                                 dropDownModelo.isEnabled = false
                             }
                             else {
+                                dropDownModelo.isEnabled = true
                                 marcaSelecionada = listaMarca[position].fipe_name
 
-                                val retrofit = Retrofit.Builder()
-                                        .baseUrl("https://fipeapi.appspot.com/api/1/carros/veiculos/")
+                                val retrofit2 = Retrofit.Builder()
+                                        .baseUrl("https://fipeapi.appspot.com/api/1/carros/")
                                         .addConverterFactory(GsonConverterFactory.create())
                                         .build()
 
-                                val carroServiceModelo = retrofit.create(CarrosService::class.java)
-                                carroServiceModelo.enviaIdSelecionado(idSelecionado)
-                                val call = carroServiceModelo.recuperarModelo()
+                                val carroServiceModelo = retrofit2.create(CarrosService::class.java)
+                                carroServiceModelo.enviaIdSelecionado(idSelecionado.toInt())
+                                val call2 = carroServiceModelo.recuperarModelo()
 
-                                call.enqueue(object : Callback<List<Modelo>> {
-                                    override fun onResponse(call: Call<List<Modelo>>?, response: Response<List<Modelo>>?) {
-                                        if (response!!.isSuccessful()) {
-                                            val modelos = response.body()
+                                call2.enqueue(object : Callback<List<Modelo>> {
+                                    override fun onResponse(call: Call<List<Modelo>>?, response2: Response<List<Modelo>>?) {
+                                        if (response2!!.isSuccessful()) {
+                                            val modelos = response2.body()
                                             modelos.toString()
                                             listaModelos = modelos!!.toMutableList()
 

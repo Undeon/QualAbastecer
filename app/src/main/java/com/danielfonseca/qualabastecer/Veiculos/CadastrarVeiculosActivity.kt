@@ -38,26 +38,25 @@ class CadastrarVeiculosActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cadastrar_veiculos)
 
-        listaMarca.add(0, Marca("-1", "Escolha o Fabricante"))
-
         val call = carroService.recuperarMarca()
         call.enqueue(object: Callback<List<Marca>>{
             override fun onResponse(call: Call<List<Marca>>?, response: Response<List<Marca>>?) {
+                listaMarca.add(0, Marca("-1", "Escolha o Fabricante"))
                 if(response!!.isSuccessful()){
                     val marcas = response.body()
                     listaMarca.addAll(marcas!!)
 
-                    adapterMarca()
+                    popularSpinnerMarca()
 
                     dropDownMarcas?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
                         override fun onNothingSelected(parent: AdapterView<*>?) {}
                         override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                             listaModelos.clear()
                             listaModelos.add(0, Modelo("-1", "Escolha o Modelo"))
-                            adapterModelo()
+                            popularSpinnerModelo()
                             listaAno.clear()
                             listaAno.add(0, Ano("-1", "Escolha o Ano Modelo"))
-                            adapterAno()
+                            popularSpinnerAno()
 
                             idMarca = listaMarca[position].id
 
@@ -91,14 +90,14 @@ class CadastrarVeiculosActivity : AppCompatActivity() {
                     val modelos = response2.body()
                     listaModelos.addAll(modelos!!)
 
-                    adapterModelo()
+                    popularSpinnerModelo()
 
                     dropDownModelo?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                         override fun onNothingSelected(parent: AdapterView<*>?) {}
                         override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                             listaAno.clear()
                             listaAno.add(0, Ano("-1", "Escolha o Ano Modelo"))
-                            adapterAno()
+                            popularSpinnerAno()
 
                             idModelo = listaModelos[position].id
 
@@ -129,7 +128,7 @@ class CadastrarVeiculosActivity : AppCompatActivity() {
                     val ano = response3.body()
                     listaAno.addAll(ano!!)
 
-                    adapterAno()
+                    popularSpinnerAno()
 
                     dropDownAno?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                         override fun onNothingSelected(parent: AdapterView<*>?) {}
@@ -146,19 +145,19 @@ class CadastrarVeiculosActivity : AppCompatActivity() {
         })
     }
 
-    fun adapterMarca() {
+    fun popularSpinnerMarca() {
         val adapterMarca = ArrayAdapter(this@CadastrarVeiculosActivity, android.R.layout.simple_spinner_item, listaMarca)
         adapterMarca.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         dropDownMarcas!!.setAdapter(adapterMarca)
     }
 
-    fun adapterModelo(){
+    fun popularSpinnerModelo(){
         val adapterModelo = ArrayAdapter(this@CadastrarVeiculosActivity, android.R.layout.simple_spinner_item, listaModelos)
         adapterModelo.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         dropDownModelo!!.setAdapter(adapterModelo)
     }
 
-    fun adapterAno(){
+    fun popularSpinnerAno(){
         val adapterAno = ArrayAdapter(this@CadastrarVeiculosActivity, android.R.layout.simple_spinner_item, listaAno)
         adapterAno.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         dropDownAno!!.setAdapter(adapterAno)

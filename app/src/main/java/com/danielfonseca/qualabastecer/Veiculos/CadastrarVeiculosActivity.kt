@@ -45,7 +45,6 @@ class CadastrarVeiculosActivity : AppCompatActivity() {
             override fun onResponse(call: Call<List<Marca>>?, response: Response<List<Marca>>?) {
                 if(response!!.isSuccessful()){
                     val marcas = response.body()
-                    marcas.toString()
                     listaMarca.addAll(marcas!!)
 
                     adapterMarca()
@@ -77,7 +76,9 @@ class CadastrarVeiculosActivity : AppCompatActivity() {
                 }
             }
             override fun onFailure(call: Call<List<Marca>>?, t: Throwable?) {
-                call.toString()
+                /*Snackbar.make(rootLayout, "Falha ao gerar a lista de marcas.", Snackbar.LENGTH_LONG)
+                        .setAction("Tentar novamente", View -> )
+                        .show()*/
             }
         })
     }
@@ -88,7 +89,6 @@ class CadastrarVeiculosActivity : AppCompatActivity() {
             override fun onResponse(call: Call<List<Modelo>>?, response2: Response<List<Modelo>>?) {
                 if (response2!!.isSuccessful()) {
                     val modelos = response2.body()
-                    modelos.toString()
                     listaModelos.addAll(modelos!!)
 
                     adapterModelo()
@@ -127,7 +127,6 @@ class CadastrarVeiculosActivity : AppCompatActivity() {
             override fun onResponse(call: Call<List<Ano>>?, response3: Response<List<Ano>>?) {
                 if (response3!!.isSuccessful()) {
                     val ano = response3.body()
-                    ano.toString()
                     listaAno.addAll(ano!!)
 
                     adapterAno()

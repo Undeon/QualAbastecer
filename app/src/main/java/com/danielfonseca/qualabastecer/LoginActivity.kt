@@ -10,9 +10,9 @@ import br.com.youse.forms.rxform.RxField
 import br.com.youse.forms.rxform.RxForm
 import br.com.youse.forms.validators.MinLengthValidator
 import br.com.youse.forms.validators.RequiredValidator
-import com.danielfonseca.qualabastecer.Usuarios.CadastrarUsuarioActivity
-import com.danielfonseca.qualabastecer.Validators.EmailValidator
-import com.danielfonseca.qualabastecer.Veiculos.CadastrarVeiculosActivity
+import com.danielfonseca.qualabastecer.usuarios.CadastrarUsuarioActivity
+import com.danielfonseca.qualabastecer.validators.EmailValidator
+import com.danielfonseca.qualabastecer.veiculos.CadastrarVeiculosActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.jakewharton.rxbinding2.view.clicks
 import com.jakewharton.rxbinding2.widget.textChanges

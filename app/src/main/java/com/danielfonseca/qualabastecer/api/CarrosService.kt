@@ -1,14 +1,11 @@
-package com.danielfonseca.qualabastecer.API
+package com.danielfonseca.qualabastecer.api
 
-import com.danielfonseca.qualabastecer.Model.Ano
-import com.danielfonseca.qualabastecer.Model.Marca
-import com.danielfonseca.qualabastecer.Model.Modelo
+import com.danielfonseca.qualabastecer.model.Ano
+import com.danielfonseca.qualabastecer.model.Marca
+import com.danielfonseca.qualabastecer.model.Modelo
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
-import com.google.firebase.firestore.auth.User
-import okhttp3.ResponseBody
-import retrofit2.http.Query
 
 
 interface CarrosService {

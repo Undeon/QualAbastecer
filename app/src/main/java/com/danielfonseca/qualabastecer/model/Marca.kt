@@ -1,4 +1,4 @@
-package com.danielfonseca.qualabastecer.Model
+package com.danielfonseca.qualabastecer.model
 
 data class Marca(val id: String, val fipe_name: String) {
 

@@ -20,9 +20,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Veiculos.GerenciarVeiculosActivity" />
-        <activity android:name=".Veiculos.CadastrarVeiculosActivity" />
-        <activity android:name=".Usuarios.CadastrarUsuarioActivity" />
+        <activity android:name=".veiculos.GerenciarVeiculosActivity" />
+        <activity android:name=".veiculos.CadastrarVeiculosActivity" />
+        <activity android:name=".usuarios.CadastrarUsuarioActivity" />
         <activity android:name=".MainActivity"></activity>
     </application>
 

@@ -1,4 +1,4 @@
-package com.danielfonseca.qualabastecer.Usuarios
+package com.danielfonseca.qualabastecer.usuarios
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
@@ -12,10 +12,10 @@ import br.com.youse.forms.validators.MinLengthValidator
 import br.com.youse.forms.validators.RequiredValidator
 import br.com.youse.forms.validators.Validator
 import com.danielfonseca.qualabastecer.R
-import com.danielfonseca.qualabastecer.Validators.ComplexityValidator
-import com.danielfonseca.qualabastecer.Validators.EmailValidator
-import com.danielfonseca.qualabastecer.Validators.EqualsValidator
-import com.danielfonseca.qualabastecer.Veiculos.CadastrarVeiculosActivity
+import com.danielfonseca.qualabastecer.validators.ComplexityValidator
+import com.danielfonseca.qualabastecer.validators.EmailValidator
+import com.danielfonseca.qualabastecer.validators.EqualsValidator
+import com.danielfonseca.qualabastecer.veiculos.CadastrarVeiculosActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.firestore.FirebaseFirestore

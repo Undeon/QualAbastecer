@@ -1,4 +1,4 @@
-package com.danielfonseca.qualabastecer.Model
+package com.danielfonseca.qualabastecer.model
 
 data class Ano(val id: String, val name: String) {
 

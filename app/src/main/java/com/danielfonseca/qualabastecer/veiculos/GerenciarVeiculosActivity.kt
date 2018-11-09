@@ -1,4 +1,4 @@
-package com.danielfonseca.qualabastecer.Veiculos
+package com.danielfonseca.qualabastecer.veiculos
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle

@@ -1,4 +1,4 @@
-package com.danielfonseca.qualabastecer.Validators
+package com.danielfonseca.qualabastecer.validators
 
 /**
 MIT License
@@ -24,37 +24,20 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
+import android.util.Patterns
 import br.com.youse.forms.validators.ValidationMessage
 import br.com.youse.forms.validators.ValidationTypes
 import br.com.youse.forms.validators.Validator
 
-class ComplexityValidator(val message: String) : Validator<String> {
+class EmailValidator    (val message: String) : Validator<String> {
 
-    private val validationMessage = ValidationMessage(message = message, validationType = ValidationTypes.MIN_LENGTH)
+    private val validationMessage = ValidationMessage(message = message, validationType = ValidationTypes.REQUIRED)
 
     override fun validationMessage(): ValidationMessage {
         return validationMessage
     }
 
-    override fun isValid(password: String?): Boolean {
-        password?.let {
-            val passwordPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{4,}$"
-            val passwordMatcher = Regex(passwordPattern)
-
-            return passwordMatcher.find(password) != null
-        } ?: return false
+    override fun isValid(input: String?): Boolean {
+        return Patterns.EMAIL_ADDRESS.matcher(input).matches()
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

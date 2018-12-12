@@ -1,6 +1,5 @@
 package com.danielfonseca.qualabastecer.veiculos
 
-import android.app.ProgressDialog.show
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.Snackbar
@@ -47,6 +46,66 @@ class CadastrarVeiculosActivity : AppCompatActivity() {
         popularSpinnerAno()
 
         recuperarMarca()
+
+        checkBoxGasolina.setOnCheckedChangeListener { _, _ ->
+            if(checkBoxGasolina.isChecked) {
+                disableDiesel()
+            }
+            else{
+                enableDiesel()
+            }
+        }
+
+        checkBoxEtanol.setOnCheckedChangeListener { _, _ ->
+            if(checkBoxEtanol.isChecked) {
+                disableDiesel()
+            }
+            else{
+                enableDiesel()
+            }
+        }
+
+        checkBoxGNV.setOnCheckedChangeListener { _, _ ->
+            if(checkBoxGNV.isChecked) {
+                disableDiesel()
+            }
+            else{
+                enableDiesel()
+            }
+        }
+
+        checkBoxDiesel.setOnCheckedChangeListener { _, _ ->
+            if(checkBoxDiesel.isChecked) {
+                disableOtto()
+            }
+            else{
+                enableOtto()
+            }
+        }
+    }
+
+    private fun enableDiesel() {
+        checkBoxDiesel.isEnabled = true
+    }
+
+    private fun disableDiesel() {
+        checkBoxDiesel.isChecked = false
+        checkBoxDiesel.isEnabled = false
+    }
+
+    private fun enableOtto() {
+        checkBoxEtanol.isEnabled = true
+        checkBoxGNV.isEnabled = true
+        checkBoxGasolina.isEnabled = true
+    }
+
+    private fun disableOtto() {
+        checkBoxEtanol.isChecked = false
+        checkBoxEtanol.isEnabled = false
+        checkBoxGNV.isChecked = false
+        checkBoxGNV.isEnabled = false
+        checkBoxGasolina.isChecked = false
+        checkBoxGasolina.isEnabled = false
     }
 
     fun recuperarMarca() {

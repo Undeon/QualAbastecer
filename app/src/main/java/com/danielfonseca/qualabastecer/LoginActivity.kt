@@ -6,8 +6,8 @@ import android.support.design.widget.TextInputLayout
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import br.com.youse.forms.rxform.IRxForm
-import br.com.youse.forms.rxform.RxField
 import br.com.youse.forms.rxform.RxForm
+import br.com.youse.forms.rxform.models.RxField
 import br.com.youse.forms.validators.MinLengthValidator
 import br.com.youse.forms.validators.RequiredValidator
 import com.danielfonseca.qualabastecer.usuarios.CadastrarUsuarioActivity
@@ -53,6 +53,7 @@ class LoginActivity : AppCompatActivity() {
                 input = passwordChanges,
                 validators = passwordValidators)
 
+
         form = RxForm.Builder<Int>(submitHappens)
                 .addField(emailField)
                 .addField(passwordField)
@@ -70,8 +71,8 @@ class LoginActivity : AppCompatActivity() {
         })
 
         disposables.add(form.onValidSubmit().subscribe{
-            var email = textoLoginEmail.text.toString()
-            var password = textoLoginSenha.text.toString()
+            val email = textoLoginEmail.text.toString()
+            val password = textoLoginSenha.text.toString()
 
             processoLogin.signInWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {

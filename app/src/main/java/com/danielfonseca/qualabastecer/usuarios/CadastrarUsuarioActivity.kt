@@ -12,7 +12,6 @@ import br.com.youse.forms.validators.MinLengthValidator
 import br.com.youse.forms.validators.RequiredValidator
 import br.com.youse.forms.validators.Validator
 import com.danielfonseca.qualabastecer.R
-import com.danielfonseca.qualabastecer.validators.ComplexityValidator
 import com.danielfonseca.qualabastecer.validators.EmailValidator
 import com.danielfonseca.qualabastecer.validators.EqualsValidator
 import com.danielfonseca.qualabastecer.veiculos.CadastrarVeiculosActivity
@@ -42,8 +41,7 @@ class CadastrarUsuarioActivity : AppCompatActivity() {
 
     val passwordValidators = listOf(
             RequiredValidator("O campo senha não pode ficar vazio."),
-            MinLengthValidator("A senha precisa ter pelo menos 8 caracteres", 8),
-            ComplexityValidator("A senha precisa ter pelo menos um número e um caractere especial")
+            MinLengthValidator("A senha precisa ter pelo menos 6 caracteres", 6)
     )
 
     val passwordConfirmaValidators by lazy{ listOf(

@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.support.design.widget.TextInputLayout
 import android.widget.Toast
 import br.com.youse.forms.rxform.IRxForm
-import br.com.youse.forms.rxform.RxField
+import br.com.youse.forms.rxform.models.RxField
 import br.com.youse.forms.rxform.RxForm
 import br.com.youse.forms.validators.MinLengthValidator
 import br.com.youse.forms.validators.RequiredValidator
@@ -16,6 +16,7 @@ import com.danielfonseca.qualabastecer.validators.ComplexityValidator
 import com.danielfonseca.qualabastecer.validators.EmailValidator
 import com.danielfonseca.qualabastecer.validators.EqualsValidator
 import com.danielfonseca.qualabastecer.veiculos.CadastrarVeiculosActivity
+import com.google.firebase.FirebaseNetworkException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.firestore.FirebaseFirestore
@@ -23,6 +24,7 @@ import com.jakewharton.rxbinding2.view.clicks
 import com.jakewharton.rxbinding2.widget.textChanges
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_cadastrar_usuario.*
+import java.lang.Exception
 
 class CadastrarUsuarioActivity : AppCompatActivity() {
 
@@ -102,9 +104,9 @@ class CadastrarUsuarioActivity : AppCompatActivity() {
 
             botaoCadastroCadastrar.isEnabled = false
 
-            var nome = textoCadastroNome.text.toString()
-            var email = textoCadastroEmail.text.toString()
-            var password = textoCadastroSenha.text.toString()
+            val nome = textoCadastroNome.text.toString()
+            val email = textoCadastroEmail.text.toString()
+            val password = textoCadastroSenha.text.toString()
 
             val usuario = Usuario()
             usuario.nome = nome
@@ -112,8 +114,12 @@ class CadastrarUsuarioActivity : AppCompatActivity() {
 
             processoCadastro.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    reference.set(usuario)
-                    Toast.makeText(this, "Cadastro efetuado com sucesso.", Toast.LENGTH_LONG).show()
+                    reference
+                            .collection(usuario.nome.toString())
+                            .document("Cadastro")
+                            .set(usuario)
+                            .addOnSuccessListener { Toast.makeText(this, "Cadastro efetuado com sucesso.", Toast.LENGTH_SHORT).show() }
+                            .addOnFailureListener { exception: Exception -> println(exception.toString()) }
                     val intent = Intent(this, CadastrarVeiculosActivity::class.java)
                     startActivity(intent)
                     finish()
@@ -124,6 +130,12 @@ class CadastrarUsuarioActivity : AppCompatActivity() {
                         val errorCode = (task.exception as FirebaseAuthException).errorCode
                         if(errorCode == "ERROR_EMAIL_ALREADY_IN_USE") {
                             Toast.makeText(this, "E-mail já cadastrado", Toast.LENGTH_LONG).show()
+                        }
+                    }
+                    if(task.exception is FirebaseNetworkException){
+                        val errorCode = (task.exception as FirebaseNetworkException).message
+                        if(errorCode == "A network error (such as timeout, interrupted connection or unreachable host) has occurred."){
+                            Toast.makeText(this, "Ocorreu uma falha rede. Gentileza verificar a sua conexão com a internet e tentar novamente.", Toast.LENGTH_LONG).show()
                         }
                     }
                 }

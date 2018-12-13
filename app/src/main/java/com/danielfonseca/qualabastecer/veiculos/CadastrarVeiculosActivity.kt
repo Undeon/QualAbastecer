@@ -47,8 +47,8 @@ class CadastrarVeiculosActivity : AppCompatActivity() {
 
         recuperarMarca()
 
-        checkBoxGasolina.setOnCheckedChangeListener { _, _ ->
-            if(checkBoxGasolina.isChecked) {
+        checkBoxGasolina.setOnCheckedChangeListener { _, isChecked ->
+            if(isChecked || checkBoxEtanol.isChecked) {
                 disableDiesel()
             }
             else{
@@ -56,8 +56,8 @@ class CadastrarVeiculosActivity : AppCompatActivity() {
             }
         }
 
-        checkBoxEtanol.setOnCheckedChangeListener { _, _ ->
-            if(checkBoxEtanol.isChecked) {
+        checkBoxEtanol.setOnCheckedChangeListener { _, isChecked ->
+            if(isChecked || checkBoxGasolina.isChecked) {
                 disableDiesel()
             }
             else{
@@ -65,17 +65,8 @@ class CadastrarVeiculosActivity : AppCompatActivity() {
             }
         }
 
-        checkBoxGNV.setOnCheckedChangeListener { _, _ ->
-            if(checkBoxGNV.isChecked) {
-                disableDiesel()
-            }
-            else{
-                enableDiesel()
-            }
-        }
-
-        checkBoxDiesel.setOnCheckedChangeListener { _, _ ->
-            if(checkBoxDiesel.isChecked) {
+        checkBoxDiesel.setOnCheckedChangeListener { _, isChecked ->
+            if(isChecked) {
                 disableOtto()
             }
             else{
@@ -95,15 +86,12 @@ class CadastrarVeiculosActivity : AppCompatActivity() {
 
     private fun enableOtto() {
         checkBoxEtanol.isEnabled = true
-        checkBoxGNV.isEnabled = true
         checkBoxGasolina.isEnabled = true
     }
 
     private fun disableOtto() {
         checkBoxEtanol.isChecked = false
         checkBoxEtanol.isEnabled = false
-        checkBoxGNV.isChecked = false
-        checkBoxGNV.isEnabled = false
         checkBoxGasolina.isChecked = false
         checkBoxGasolina.isEnabled = false
     }

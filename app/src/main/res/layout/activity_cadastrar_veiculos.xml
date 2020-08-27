@@ -6,31 +6,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    tools:context=".usuarios.CadastrarUsuarioActivity">
-    <android.support.constraint.ConstraintLayout
+    tools:context=".users.UserRegisterActivity">
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/rootLayout"
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         >
 
         <Spinner
-            android:id="@+id/dropDownAno"
+            android:id="@+id/dropDownBrandYearList"
             android:layout_width="368dp"
             android:layout_height="48dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/dropDownModelo" />
+            app:layout_constraintTop_toBottomOf="@+id/dropDownModel" />
 
         <TextView
-            android:id="@+id/textoTituloCadastroVeiculo"
+            android:id="@+id/textAddNewVehicleTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:text="@string/textoTituloCadastroVeiculo"
@@ -42,54 +41,54 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Spinner
-            android:id="@+id/dropDownMarcas"
+            android:id="@+id/dropDownBrandList"
             android:layout_width="368dp"
             android:layout_height="48dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textoTituloCadastroVeiculo" />
+            app:layout_constraintTop_toBottomOf="@+id/textAddNewVehicleTitle" />
 
         <Spinner
-            android:id="@+id/dropDownModelo"
+            android:id="@+id/dropDownModel"
             android:layout_width="368dp"
             android:layout_height="48dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/dropDownMarcas" />
+            app:layout_constraintTop_toBottomOf="@+id/dropDownBrandList" />
 
         <CheckBox
-            android:id="@+id/checkBoxGasolina"
+            android:id="@+id/checkBoxGas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
             android:text="@string/checkboxGasolina"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/dropDownAno" />
+            app:layout_constraintTop_toBottomOf="@+id/dropDownBrandYearList" />
 
         <CheckBox
             android:id="@+id/checkBoxEtanol"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
             android:text="@string/checkboxEtanol"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/checkBoxGasolina" />
+            app:layout_constraintTop_toBottomOf="@+id/checkBoxGas" />
 
         <CheckBox
             android:id="@+id/checkBoxDiesel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
             android:text="@string/checkboxDiesel"
             app:layout_constraintStart_toStartOf="parent"
@@ -99,7 +98,7 @@
             android:id="@+id/checkBoxGNV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
             android:text="@string/checkboxGNV"
             app:layout_constraintStart_toStartOf="parent"
@@ -109,7 +108,7 @@
             android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="8dp"
             android:text="@string/botaoCadastroSalvar"
@@ -118,5 +117,5 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/checkBoxGNV" />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

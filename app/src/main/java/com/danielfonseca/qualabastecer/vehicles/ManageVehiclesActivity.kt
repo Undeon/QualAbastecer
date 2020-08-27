@@ -1,10 +1,10 @@
-package com.danielfonseca.qualabastecer.veiculos
+package com.danielfonseca.qualabastecer.vehicles
 
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.danielfonseca.qualabastecer.R
 
-class GerenciarVeiculosActivity : AppCompatActivity() {
+class ManageVehiclesActivity : AppCompatActivity() {
 
 override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)

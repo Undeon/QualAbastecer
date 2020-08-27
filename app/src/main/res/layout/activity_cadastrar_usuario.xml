@@ -6,16 +6,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    tools:context=".usuarios.CadastrarUsuarioActivity"
+    tools:context=".users.UserRegisterActivity"
     >
 
-    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
 
         <TextView
-            android:id="@+id/textoTituloCadastroUsuario"
+            android:id="@+id/textSignUpTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -29,8 +29,8 @@
             app:layout_constraintTop_toTopOf="parent"
             />
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/layoutCadastroNome"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutSignUpUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -38,11 +38,11 @@
             android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textoTituloCadastroUsuario"
+            app:layout_constraintTop_toBottomOf="@+id/textSignUpTitle"
             >
 
             <EditText
-                android:id="@+id/textoCadastroNome"
+                android:id="@+id/textSignUpUserName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -52,10 +52,10 @@
                 app:layout_constraintStart_toStartOf="parent"
                 />
 
-    </android.support.design.widget.TextInputLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/layoutCadastroEmail"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutSignUpEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -63,11 +63,11 @@
             android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layoutCadastroNome"
+            app:layout_constraintTop_toBottomOf="@+id/layoutSignUpUser"
             >
 
             <EditText
-                android:id="@+id/textoCadastroEmail"
+                android:id="@+id/textSignUpEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autofillHints=""
@@ -76,10 +76,10 @@
                 android:inputType="textEmailAddress"
                 />
 
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/layoutCadastroSenha"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutSignUpPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -87,11 +87,11 @@
             android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layoutCadastroEmail"
+            app:layout_constraintTop_toBottomOf="@+id/layoutSignUpEmail"
             >
 
             <EditText
-                android:id="@+id/textoCadastroSenha"
+                android:id="@+id/textSignUpPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -99,10 +99,10 @@
                 android:inputType="textPassword"
                 />
 
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/layoutCadastroConfirmaSenha"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutSignUpPasswordConfirmation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -110,11 +110,11 @@
             android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layoutCadastroSenha"
+            app:layout_constraintTop_toBottomOf="@+id/layoutSignUpPassword"
             >
 
             <EditText
-                android:id="@+id/textoCadastroConfirmaSenha"
+                android:id="@+id/textSignupPasswordConfirmation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="0dp"
@@ -126,10 +126,10 @@
                 app:layout_constraintStart_toStartOf="parent"
                 />
 
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/botaoCadastroCadastrar"
+            android:id="@+id/buttonSignUp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -141,9 +141,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layoutCadastroConfirmaSenha"
+            app:layout_constraintTop_toBottomOf="@+id/layoutSignUpPasswordConfirmation"
             app:layout_constraintVertical_bias="0.954"
             />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

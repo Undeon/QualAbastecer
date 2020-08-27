@@ -2,17 +2,17 @@ package com.danielfonseca.qualabastecer
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.TextInputLayout
-import android.support.v7.app.AppCompatActivity
+import com.google.android.material.textfield.TextInputLayout
+import androidx.appcompat.app.AppCompatActivity
 import android.widget.Toast
 import br.com.youse.forms.rxform.IRxForm
 import br.com.youse.forms.rxform.RxForm
 import br.com.youse.forms.rxform.models.RxField
 import br.com.youse.forms.validators.MinLengthValidator
 import br.com.youse.forms.validators.RequiredValidator
-import com.danielfonseca.qualabastecer.usuarios.CadastrarUsuarioActivity
+import com.danielfonseca.qualabastecer.users.UserRegisterActivity
 import com.danielfonseca.qualabastecer.validators.EmailValidator
-import com.danielfonseca.qualabastecer.veiculos.CadastrarVeiculosActivity
+import com.danielfonseca.qualabastecer.vehicles.AddVehiclesActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.jakewharton.rxbinding2.view.clicks
 import com.jakewharton.rxbinding2.widget.textChanges
@@ -40,19 +40,17 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        val emailChanges = textoLoginEmail.textChanges().map{ it.toString()}
-        val passwordChanges = textoLoginSenha.textChanges().map{ it.toString()}
+        val emailChanges    = textSignInEmail.textChanges().map{ it.toString()}
+        val passwordChanges = textSignInPassword.textChanges().map{ it.toString()}
+        val submitHappens   = buttonSignIn.clicks()
 
-        val submitHappens = botaoLogar.clicks()
+        val emailField      = RxField(key = layoutSignInEmail.id,
+                                      input = emailChanges,
+                                      validators = emailValidators)
 
-        val emailField = RxField(key = layoutLoginEmail.id,
-                input = emailChanges,
-                validators = emailValidators)
-
-        val passwordField = RxField(key = layoutLoginSenha.id,
-                input = passwordChanges,
-                validators = passwordValidators)
-
+        val passwordField   = RxField(key = textSignInPassword.id,
+                                      input = passwordChanges,
+                                      validators = passwordValidators)
 
         form = RxForm.Builder<Int>(submitHappens)
                 .addField(emailField)
@@ -63,34 +61,35 @@ class LoginActivity : AppCompatActivity() {
         disposables.add(form.onFieldValidationChange()
                 .subscribe{
                 findViewById<TextInputLayout>(it.first)
-                    .error = it.second.firstOrNull()?.message
+                .error = it.second.firstOrNull()?.message
         })
 
         disposables.add(form.onFormValidationChange().subscribe{
-            botaoLogar.isEnabled = it
+            buttonSignIn.isEnabled = it
         })
 
         disposables.add(form.onValidSubmit().subscribe{
-            val email = textoLoginEmail.text.toString()
-            val password = textoLoginSenha.text.toString()
+            val email    = textSignInEmail.text.toString()
+            val password = textSignInPassword.text.toString()
 
             processoLogin.signInWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                        val intent = Intent(this, MainActivity::class.java)
-                        startActivity(intent)
-                } else {
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                }
+                else {
                     Toast.makeText(this, "E-mail ou senha inválidos.", Toast.LENGTH_LONG).show()
                 }
             }
         })
 
-        textoCriarConta.setOnClickListener{
-            val intent = Intent(this, CadastrarUsuarioActivity::class.java)
+        textSignUp.setOnClickListener{
+            val intent = Intent(this, UserRegisterActivity::class.java)
             startActivity(intent)
         }
 
         button2.setOnClickListener {
-            val intent = Intent(this, CadastrarVeiculosActivity::class.java)
+            val intent = Intent(this, AddVehiclesActivity::class.java)
             startActivity(intent)
         }
     }

@@ -38,7 +38,7 @@ class EqualsValidator(val message: String, private val comparador1: EditText) : 
     }
 
     override fun isValid(input: String?): Boolean {
-        val texto1 = comparador1.text.toString()
-        return texto1 == input
+        val text1 = comparador1.text.toString()
+        return text1 == input
     }
 }
